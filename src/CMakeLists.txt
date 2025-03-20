@@ -1,6 +1,7 @@
 add_executable(clrender
   main.cc
   common/ObjParser.cc
+  common/FrameBuffer.cc
 )
 
 target_include_directories(clrender
