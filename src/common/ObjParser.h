@@ -4,7 +4,8 @@
 #include <string>
 #include <vector>
 #include "Geometry.h"
-#include "gmtl/gmtl.h"
+#include "glm/vec2.hpp"
+#include "glm/vec3.hpp"
 
 class ObjParser {
  public:
@@ -13,9 +14,9 @@ class ObjParser {
 
  private:
   std::vector<Triangle> tlist_;
-  std::vector<gmtl::Vec3f> vertices_;
-  std::vector<gmtl::Vec2f> uvs_;
-  std::vector<gmtl::Vec3f> normals_;
+  std::vector<glm::vec3> vertices_;
+  std::vector<glm::vec2> uvs_;
+  std::vector<glm::vec3> normals_;
 
   enum ParseError {
     SUCCESS = 0,

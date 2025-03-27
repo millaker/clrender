@@ -1,7 +1,5 @@
-# gmtl
-add_library(gmtl INTERFACE)
-target_include_directories(gmtl
-  INTERFACE ${CMAKE_CURRENT_LIST_DIR})
+# glm
+add_subdirectory(glm)
 
 # stb image loader and writer
 add_library(stb INTERFACE)
