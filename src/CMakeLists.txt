@@ -11,7 +11,6 @@ target_include_directories(clrender
 )
 
 target_link_libraries(clrender
-  PRIVATE gmtl
   PRIVATE stb
   PRIVATE fmt::fmt
 )

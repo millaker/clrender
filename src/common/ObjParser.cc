@@ -89,7 +89,7 @@ ObjParser::ParseError ObjParser::parse_vertex(
   if (tok.size() != 4)
     return INVALID_SYNTAX;
 
-  gmtl::Vec3f tmp;
+  glm::vec3 tmp;
   try {
     tmp[0] = std::stof(tok[1]);
     tmp[1] = std::stof(tok[2]);
@@ -107,7 +107,7 @@ ObjParser::ParseError ObjParser::parse_normal(
   if (tok.size() != 4)
     return INVALID_SYNTAX;
 
-  gmtl::Vec3f tmp;
+  glm::vec3 tmp;
   try {
     tmp[0] = std::stof(tok[1]);
     tmp[1] = std::stof(tok[2]);
@@ -124,7 +124,7 @@ ObjParser::ParseError ObjParser::parse_uv(const std::vector<std::string>& tok) {
   if (tok.size() != 3)
     return INVALID_SYNTAX;
 
-  gmtl::Vec2f tmp;
+  glm::vec2 tmp;
   try {
     tmp[0] = std::stof(tok[1]);
     tmp[1] = std::stof(tok[2]);
