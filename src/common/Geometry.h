@@ -5,9 +5,7 @@
 #include <iostream>
 #include <optional>
 #include "fmt/ostream.h"
-#include "glm/glm.hpp"
-#define GLM_ENABLE_EXPERIMENTAL
-#include "glm/ext.hpp"
+#include "glm.h"
 
 struct Triangle {
   std::array<glm::vec3, 3> vertices;
