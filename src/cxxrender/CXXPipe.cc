@@ -12,15 +12,25 @@ void CXXPipe::Render(const std::vector<Triangle>& tlist) {
     glm::ivec2 post_vs[3];
     for (int i = 0; i < 3; i++) {
       shader_->VertexShader(i, t.vertices[i], verts[i], nullptr);
-      /* Post VS: Viewport transformation */
+      /* Viewport transformation */
       verts[i] = mvp_ * verts[i];
-      /* Post VS: Perspective division */
+      /* Perspective division */
       post_vs[i] = {verts[i].x / verts[i].w, verts[i].y / verts[i].w};
     }
     /* Rasterize */
-    /* First version with no AABB */
-    for (int i = 0; i < fb_->width; i++) {
-      for (int j = 0; j < fb_->height; j++) {
+    int aabb_xmin = std::min(
+        0, std::min(post_vs[0].x, std::min(post_vs[1].x, post_vs[2].x)));
+    int aabb_xmax =
+        std::min(fb_->width,
+                 std::max(post_vs[0].x, std::max(post_vs[1].x, post_vs[2].x)));
+    int aabb_ymin = std::min(
+        0, std::min(post_vs[0].y, std::min(post_vs[1].y, post_vs[2].y)));
+    int aabb_ymax =
+        std::min(fb_->height,
+                 std::max(post_vs[0].y, std::max(post_vs[1].y, post_vs[2].y)));
+
+    for (int i = aabb_xmin; i < aabb_xmax; i++) {
+      for (int j = aabb_ymin; j < aabb_ymax; j++) {
         auto bary = barycentric(post_vs, glm::ivec2(i, j));
         glm::vec4 c;
         shader_->FragmentShader(bary, c);
