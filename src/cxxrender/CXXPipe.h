@@ -19,6 +19,7 @@ struct ShaderBase {
 
 class CXXPipe {
  public:
+  void ClearBuffer();
   void ViewPort(const int x, const int y, const int width, const int height);
   void SetShader(ShaderBase*);
   void SetFrameBuffer(FrameBuffer*);
@@ -26,9 +27,12 @@ class CXXPipe {
 
  private:
   glm::vec3 barycentric(const glm::ivec2 tri_verts[3], const glm::ivec2 P);
+  bool depth_test(const glm::ivec2& coord, const glm::vec3& bary,
+                  const float zvals[3]);
 
   ShaderBase* shader_ = nullptr;
   FrameBuffer* fb_ = nullptr;
+  std::vector<float> zbuf_;
   glm::mat4 mvp_;
 };
 
